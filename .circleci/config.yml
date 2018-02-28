@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.3.0
+      - image: circleci/node:9.3
     steps:
       - checkout
       - run:
@@ -10,6 +10,9 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: display doc
+          command: ls -al
       - run:
           name: install-npm
           command: npm install
